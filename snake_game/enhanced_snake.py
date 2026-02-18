@@ -41,8 +41,11 @@ except:
 # 加载和保存最高分
 def load_high_score():
     try:
-        if os.path.exists("high_score.txt"):
-            with open("high_score.txt", "r") as f:
+        # 使用相对于脚本文件的路径
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        high_score_path = os.path.join(script_dir, "high_score.txt")
+        if os.path.exists(high_score_path):
+            with open(high_score_path, "r") as f:
                 return int(f.read().strip())
     except:
         pass
@@ -50,7 +53,10 @@ def load_high_score():
 
 def save_high_score(score):
     try:
-        with open("high_score.txt", "w") as f:
+        # 使用相对于脚本文件的路径
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        high_score_path = os.path.join(script_dir, "high_score.txt")
+        with open(high_score_path, "w") as f:
             f.write(str(score))
     except:
         pass
